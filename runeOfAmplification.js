@@ -156,7 +156,6 @@ runeOfAmplification.OnUpdate = () => {
         RuneOfAmplification.timer = RuneOfAmplification.runeVisionMenuTimer.GetValue();
     //Если игра активна и RuneVision = Вкл
     if (RuneOfAmplification.gameStart && RuneOfAmplification.FunctionStatus) {
-        //Каждые N секунд, получаем информацию об рунах усилений (N - runeVisionMenuTimer)
         if (Engine.OnceAt(RuneOfAmplification.timer)) {
             RuneOfAmplification.detect();
         }
