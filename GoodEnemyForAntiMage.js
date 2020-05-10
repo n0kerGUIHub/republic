@@ -103,7 +103,7 @@ var GoodEnemyForAntiMage;
     GoodEnemyForAntiMage.goodEnemyForAntiMageStatus = Menu.AddToggle(['More', 'Heroes', 'Agility', 'AntiMage'], 'Статус работы', false);
     GoodEnemyForAntiMage.goodtargetMessage = Menu.AddSlider(['More', 'Heroes', 'Agility', 'AntiMage'], 'Частота оповещений в чат(сек)', 1, 120, 30, 1);
     GoodEnemyForAntiMage.goodtargetPing = Menu.AddSlider(['More', 'Heroes', 'Agility', 'AntiMage'], 'Частота пингов(сек)', 1, 120, 30, 1);
-    GoodEnemyForAntiMage.goodEnemyForAntiMageStatus.SetTip('Данный скрипт будет отмечать и информировать вас о том герое врага,\nкоторого будет лучше всего зафокусить и убить');
+    GoodEnemyForAntiMage.goodEnemyForAntiMageStatus.SetTip('Данный скрипт будет отмечать и информировать вас о герое врага, у которого больше всего маны\n(Полезно при файтах, вы знаете кто зависит от маны больше всех)');
     GoodEnemyForAntiMage.goodEnemyForAntiMageStatus.OnChange(state => {
         GoodEnemyForAntiMage.GoodEnemyAntiMageStat = state.newValue;
     });
