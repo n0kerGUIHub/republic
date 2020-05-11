@@ -167,9 +167,7 @@ goodEnemyForAntiMage.OnUpdate = () => {
             GoodEnemyForAntiMage.enemypriority.sort((a, b) => {
                 return (a[1] - b[1]);
             });
-            for (let i of GoodEnemyForAntiMage.enemypriority) {
-                console.log(i[0].GetUnitName(), i[1]);
-            }
+
             let enemy = null;
             for (let i = 4; i > -1; i--) {
                 let tempEnemy = GoodEnemyForAntiMage.enemypriority[i][0];
