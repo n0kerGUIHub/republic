@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/goodenemyForAntiMage.ts":
-/*!*************************************!*\
-  !*** ./src/goodenemyForAntiMage.ts ***!
-  \*************************************/
+/***/ "./src/AntiFailManaVoid.ts":
+/*!*********************************!*\
+  !*** ./src/AntiFailManaVoid.ts ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -100,10 +100,10 @@ var GoodEnemyForAntiMage;
     GoodEnemyForAntiMage.GoodEnemyAntiMageStat = false;
     GoodEnemyForAntiMage.HERO_INDEX = 'npc_dota_hero_antimage';
     GoodEnemyForAntiMage.font = Renderer.LoadFont('Arial', 27, Enum.FontWeight.BOLD);
-    GoodEnemyForAntiMage.goodEnemyForAntiMageStatus = Menu.AddToggle(['More', 'Heroes', 'Agility', 'AntiMage'], 'Статус работы', false);
-    GoodEnemyForAntiMage.goodtargetMessage = Menu.AddSlider(['More', 'Heroes', 'Agility', 'AntiMage'], 'Частота оповещений в чат(сек)', 1, 120, 30, 1);
-    GoodEnemyForAntiMage.goodtargetPing = Menu.AddSlider(['More', 'Heroes', 'Agility', 'AntiMage'], 'Частота пингов(сек)', 1, 120, 30, 1);
-    GoodEnemyForAntiMage.goodEnemyForAntiMageStatus.SetTip('Данный скрипт будет отмечать и информировать вас о герое врага, у которого больше всего маны\n(Полезно при файтах, вы знаете кто зависит от маны больше всех)');
+    GoodEnemyForAntiMage.goodEnemyForAntiMageStatus = Menu.AddToggle(['More', 'Heroes', 'Agility', 'AntiMage', 'GoodEnemy'], 'Статус работы', false);
+    GoodEnemyForAntiMage.goodtargetMessage = Menu.AddSlider(['More', 'Heroes', 'Agility', 'AntiMage', 'GoodEnemy'], 'Частота оповещений в чат(сек)', 1, 120, 30, 1);
+    GoodEnemyForAntiMage.goodtargetPing = Menu.AddSlider(['More', 'Heroes', 'Agility', 'AntiMage', 'GoodEnemy'], 'Частота пингов(сек)', 1, 120, 30, 1);
+    GoodEnemyForAntiMage.goodEnemyForAntiMageStatus.SetTip('Данный скрипт будет отмечать и информировать вас о том герое врага,\nкоторого будет лучше всего зафокусить и убить');
     GoodEnemyForAntiMage.goodEnemyForAntiMageStatus.OnChange(state => {
         GoodEnemyForAntiMage.GoodEnemyAntiMageStat = state.newValue;
     });
@@ -144,7 +144,7 @@ goodEnemyForAntiMage.OnDraw = () => {
                 break;
             }
         }
-        if (enemy && enemy[0].IsAlive() && !enemy[0].IsDormant()) {
+        if (enemy && enemy[0].IsAlive() && !enemy[0].IsDormant() && !enemy[0].IsIllusion() && !enemy[0].IsMeepoClone() && enemy[0].IsVisible()) {
             let [x, y, isOnScreen] = Renderer.WorldToScreen(GoodEnemyForAntiMage.enemypriority[4][0].GetAbsOrigin().add(new Vector(0, 0, GoodEnemyForAntiMage.enemypriority[4][0].GetHealthBarOffset())));
             if (!isOnScreen) {
                 return;
@@ -167,7 +167,9 @@ goodEnemyForAntiMage.OnUpdate = () => {
             GoodEnemyForAntiMage.enemypriority.sort((a, b) => {
                 return (a[1] - b[1]);
             });
-
+            for (let i of GoodEnemyForAntiMage.enemypriority) {
+                console.log(i[0].GetUnitName(), i[1]);
+            }
             let enemy = null;
             for (let i = 4; i > -1; i--) {
                 let tempEnemy = GoodEnemyForAntiMage.enemypriority[i][0];
@@ -177,7 +179,7 @@ goodEnemyForAntiMage.OnUpdate = () => {
                 }
             }
             if (Engine.OnceAt(GoodEnemyForAntiMage.goodtargerPingTime - 0.33) && GoodEnemyForAntiMage.enemypriority[4]) {
-                if (enemy && enemy[0].IsAlive() && !enemy[0].IsDormant()) {
+                if (enemy && enemy[0].IsAlive() && !enemy[0].IsDormant() && !enemy[0].IsIllusion() && !enemy[0].IsMeepoClone() && enemy[0].IsVisible()) {
                     MiniMap.Ping(GoodEnemyForAntiMage.enemypriority[4][0].GetAbsOrigin(), Enum.PingType.NORMAL, true);
                 }
             }
@@ -207,13 +209,13 @@ RegisterScript(goodEnemyForAntiMage);
 /***/ }),
 
 /***/ 0:
-/*!*******************************************!*\
-  !*** multi ./src/goodenemyForAntiMage.ts ***!
-  \*******************************************/
+/*!***************************************!*\
+  !*** multi ./src/AntiFailManaVoid.ts ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\MayTo\AppData\Roaming\Minority\scripts\src\goodenemyForAntiMage.ts */"./src/goodenemyForAntiMage.ts");
+module.exports = __webpack_require__(/*! C:\Users\MayTo\AppData\Roaming\Minority\scripts\src\AntiFailManaVoid.ts */"./src/AntiFailManaVoid.ts");
 
 
 /***/ })
