@@ -115,7 +115,7 @@ var ArcWardenMoreDefenceBase;
     ArcWardenMoreDefenceBase.sides = ['T3 - Mid', 'T3 - Top', 'T3 - Bot'];
     let ArcWardenMoreBaseDefStatus = Menu.AddToggle(['More', 'Heroes', 'Agility', 'Arc Warden', 'BaseDef'], 'Статус', false);
     ArcWardenMoreDefenceBase.keybindHandle = Menu.AddKeyBind(['More', 'Heroes', 'Agility', 'Arc Warden', 'BaseDef'], 'Кнопка активации', Enum.ButtonCode.KEY_NONE);
-    ArcWardenMoreDefenceBase.ArcWardenMoreBaseDefCombo = Menu.AddComboBox(['More', 'Heroes', 'Agility', 'Arc Warden', 'BaseDef'], 'Башня для защиты', ArcWardenMoreDefenceBase.sides, 0)
+    ArcWardenMoreDefenceBase.ArcWardenMoreBaseDefCombo = Menu.AddComboBox(['More', 'Heroes', 'Agility', 'Arc Warden', 'BaseDef'], 'Башня для защиты', ArcWardenMoreDefenceBase.sides, 1)
         .OnChange(state => (ArcWardenMoreDefenceBase.ArcWardenMoreBaseDefCombo = state.newValue))
         .GetValue();
     let ArcWardenMoreBaseDefSSpark = Menu.AddToggle(['More', 'Heroes', 'Agility', 'Arc Warden', 'BaseDef', 'Spark'], 'SpamSpark', false);
